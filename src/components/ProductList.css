@@ -1,0 +1,35 @@
+.product-list{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.card{
+    width: 300px;
+    border: 1px solid #3d3c3c;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.card-img{
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.list-btn{
+    margin: 0px auto;
+    padding: 10px;
+    color: white;
+    background-color:#3d3c3c;
+    border: none;
+    border-radius: 20px;
+}
+
+.btn-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}

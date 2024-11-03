@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3d3c3c;
+    height: 15px;
+}
+
+.page-title{
+
+    color: white;
+    font-size: 20px;
+    align-items: center;
+}

@@ -1,0 +1,14 @@
+.hero-section{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.hero-img{
+    width: 300px;
+    height: auto;
+}
+
+.hero-text{
+    width: 400px;
+}
