@@ -1,34 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ProductList.css';
 import cardImage1 from './img/ford-mustang.jpg';
 import cardImage2 from './img/bmw7.jpg';
 
-const ProductList = () => (
-  <section>
-    <div className="product-list">
-    <div className='card'>
-        <img src={cardImage1} alt="Car banner" className='card-img'/>
-        <h1 className='card-title'>Форд Мустанг</h1>
-        <p className='card-des'>Форд Мустанг — це не просто автомобіль, а символ свободи та бунту, що захоплює серця шанувальників швидкості по всьому світу. Його агресивний дизайн, потужні двигуни та неперевершена керованість дарують відчуття адреналіну, яке неможливо забути. Цей легендарний мустанг поєднує в собі класичний стиль і сучасні технології, втілюючи у собі дух американської мрії.</p>
-    </div>
+const ProductList = () => {
+  const [visibleCards, setVisibleCards] = useState(2);
 
-    <div className='card'>
-        <img src={cardImage1} alt="Car banner" className='card-img'/>
-        <h1 className='card-title'>БМВ 7</h1>
-        <p className='card-des'>БМВ 7 — це вершина розкоші та інженерної майстерності, що втілює в собі елегантність і потужність в одному флаконі. Кожна деталь цього автомобіля створена для максимального комфорту та досконалості, пропонуючи водієві та пасажирам неперевершений досвід подорожі. З інноваційними технологіями та розкішним дизайном, БМВ 7 символізує статус і прогрес, ставлячи нові стандарти в світі преміум-класу.</p>
-    </div>
+  const products = [
+    {
+      id: 1,
+      title: 'Форд Мустанг',
+      description: 'Форд Мустанг — це не просто автомобіль, а символ свободи та бунту...',
+      image: cardImage1,
+    },
+    {
+      id: 2,
+      title: 'БМВ 7',
+      description: 'БМВ 7 — це вершина розкоші та інженерної майстерності...',
+      image: cardImage2,
+    },
+    {
+      id: 3,
+      title: 'Tesla Model S',
+      description: 'Tesla Model S — це поєднання розкоші, швидкості та електричних технологій.',
+      image: cardImage1,
+    },
+    {
+      id: 4,
+      title: 'Audi e-tron',
+      description: 'Audi e-tron — це сучасний електричний кросовер, який пропонує комфорт і стиль.',
+      image: cardImage2,
+    },
+    {
+      id: 5,
+      title: 'Porsche Taycan',
+      description: 'Porsche Taycan — ідеальне поєднання інноваційної електроніки та класичної швидкості.',
+      image: cardImage1,
+    },
+  ];
 
-    <div className='card'>
-        <img src={cardImage1} alt="Car banner" className='card-img'/>
-        <h1 className='card-title'>Форд Мустанг</h1>
-        <p className='card-des'>Форд Мустанг — це не просто автомобіль, а символ свободи та бунту, що захоплює серця шанувальників швидкості по всьому світу. Його агресивний дизайн, потужні двигуни та неперевершена керованість дарують відчуття адреналіну, яке неможливо забути. Цей легендарний мустанг поєднує в собі класичний стиль і сучасні технології, втілюючи у собі дух американської мрії.</p>
-    </div>
-    </div>
+  const showMore = () => {
+    setVisibleCards(prevVisible => Math.min(prevVisible + 3, products.length));
+  };
 
-    <div className='btn-wrap'>
-    <button className='list-btn'>Побачити Більше</button>
-    </div>
-  </section>
-);
+  return (
+    <section>
+      <div className="product-list">
+        {products.slice(0, visibleCards).map(product => (
+          <div key={product.id} className="catalog-card">
+            <img src={product.image} alt={product.title} className="card-img" />
+            <h2 className="card-title">{product.title}</h2>
+            <p className="card-des">{product.description}</p>
+            <Link to={`/product/${product.id}`}>
+              <button className="list-btn">View More</button>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      {visibleCards < products.length && (
+        <div className="btn-wrap">
+          <button className="list-btn" onClick={showMore}>Побачити Більше</button>
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default ProductList;
